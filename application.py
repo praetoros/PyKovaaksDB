@@ -470,12 +470,10 @@ class App:
     def view_display_graph_scatter_linear(self):
         functions.clear_frame(self.t_view_frame_display_graph)
         score = []
-        date = []
         run_num = []
         counter = 1
         for datapoint in self.t_view_data_selected_scenario_data:
             score.append(float(datapoint['score']))
-            # date.append(datapoint['date'])
             run_num.append(counter)
             counter += 1
         x = np.array(run_num)
@@ -497,8 +495,8 @@ class App:
         # NavigationToolbar2Tk(figure_canvas, self.t_view_frame_display_graph)
         axes = figure.add_subplot()
         axes.scatter(x, y, label='Original data')
-        axes.plot(x, a * x + b, 'y', label=f'Linear Line Of Best Fit (Window = {window})')
-        axes.plot(x, average_y, 'r-', label='Running average')
+        axes.plot(x, a * x + b, 'y', label=f'Linear Line Of Best Fit')
+        axes.plot(x, average_y, 'r-', label=f'Running average (Window = {window})')
         axes.set_title(f'{self.t_view_selected_scenario.get()} Scores')
         axes.set_ylabel('Score')
         axes.legend()
